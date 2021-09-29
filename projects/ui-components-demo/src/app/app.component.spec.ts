@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ui-library'`, () => {
+  it(`should have as title 'ui-components-demo'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ui-library');
+    expect(app.title).toEqual('ui-components-demo');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ui-library!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ui-components-demo!');
   });
 });
