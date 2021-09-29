@@ -136,3 +136,7 @@ div {
 ## Publishing your library
 ### Publishing code without an NPM server
 TODO
+
+## Other TODOs
+- encapsulated component styles vs global styles
+- Using CSS custom properties to parameterize components
