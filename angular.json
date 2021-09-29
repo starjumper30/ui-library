@@ -60,6 +60,9 @@
             "styles": [
               "projects/ui-components-demo/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["dist/ui-components"]
+            },
             "scripts": []
           },
           "configurations": {

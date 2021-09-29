@@ -19,8 +19,10 @@ ng serve
 ```
 npm run sme
 ```
+
 # Things to Learn Here
-## Packaging the library code
+## Packaging the Library
+### Packaging the library code
 Define multiple ng-packagr entrypoints!
 - Throw out the src and lib folders. Move the code up to the lib root (projects/ui-components in this example).
 - Organize the library into several root-level modules. The components inside a module should be things one would reasonably assume to be used together.
@@ -41,9 +43,96 @@ Add path entries to the root tsconfig.json so that your demo app can reference t
 }
 ```
 
+### Packaging the library styles
+- Put an _index.scss file inside each top-level module folder containing global styles for the components contained within. Feel free to have this index file just import styles from finer-grained files within the module.
+- Encode your style guide into Sass variables inside a style-guide folder in your library.
+- Add a component-styles folder containing an _index.scss file that references all of the other scss files from your modules. This gives the user the option to import all component styles at once for convenience if they wish.
+- Add a post-build step to copy .scss files into your library dist.
+```
+"copysass": "copyfiles -u 1 projects/ui-components/**/*.scss dist",
+"build:lib": "ng build ui-components && npm run copysass",
+```
+
 ## Writing the Demo app
-- Each library module should be tested in a separate lazy-loaded route. This not only demonstrates best-practices to your users but also ensures that you catch any loading/injection issues with your library.
+The demo app serves multiple purposes:
+- Allows you to test that your components and modules work properly in an actual Angular app.
+- Allows you to demonstrate proper use of the component to your users
+- Allows you to demonstrate proper use of the global styling you have provided
+
+The source of your demo app is just as important as the running app. The developers that are going to use your library should be able to use the source code of your demo as an example of how best to configure an Angular app to use your library. 
+
+Each library module should be tested in a separate lazy-loaded route. This not only demonstrates best-practices to your users but also ensures that you catch any loading/injection issues with your library.
+### Importing library code
+Because of the symbolic links in our root public-api.ts file, it's ok to import from the library like this:
+```
+import { DataGridModule }  from 'ui-components';
+```
+or like this
+```
+import { DataGridModule }  from 'ui-components/data-grid';
+```
+For the demo, having at least one type of each import is probably a good idea so that you can make sure both ways are working.
+On the other hand, you want to avoid confusing your users. 
+I would recommend using the 'ui-component' import just once and the more specific imports the rest of the time. Training the user to prefer granular imports will help them avoid problems when using libraries that are not built with symbolic links.
+### Using library styles
+Add this to the build options for the demo app in angular.json, to reference Sass files from the built library:
+```
+"stylePreprocessorOptions": {
+  "includePaths": ["dist/ui-components"]
+},
+```
+In styles.scss import all component-styles
+```
+@use 'component-styles';
+```
+
+## Writing a real app that installs the library into node_modules
+### Importing library code
+Because of the symbolic links in our root public-api.ts file, it's ok for the user to import from the library like this:
+```
+import { DataGridModule }  from 'ui-components';
+```
+or like this
+```
+import { DataGridModule }  from 'ui-components/data-grid';
+```
+
+### Using library styles
+The user of your library will need to add this to the build options for their app in angular.json:
+```
+"stylePreprocessorOptions": {
+  "includePaths": ["node_modules/ui-components"]
+},
+```
+
+In styles.scss they should import all component-styles or just the modules they need. These imports should only be done once!
+```
+@use 'component-styles';
+```
+
+or 
+
+```
+@use 'form-components';
+@use 'split-container';
+```
+
+### Using Style Guide Variables
+Variables can be imported as many times as needed, into any scss file in the application.
+Example:
+```
+@use 'style-guide'
+
+div {
+  background-color: style-guide.$primary-color
+}
+```
+
 
 ## Check Yourself
 - Run source-map-explorer and verify your library and its dependencies are being bundled into the demo app as expected. This is another reason why it is important to have lazy-loaded routes in your demo app.
 - Don't be afraid to poke around in the dist directory and manually inspect the demo-app bundles if source-map-explorer isn't giving you enough information.
+
+## Publishing your library
+### Publishing code without an NPM server
+TODO
