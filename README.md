@@ -85,7 +85,7 @@ Add this to the build options for the demo app in angular.json, to reference Sas
 ```
 In styles.scss import all component-styles
 ```
-@use 'component-styles';
+@import 'component-styles';
 ```
 
 ## Writing a real app that installs the library into node_modules
@@ -109,24 +109,24 @@ The user of your library will need to add this to the build options for their ap
 
 In styles.scss they should import all component-styles or just the modules they need. These imports should only be done once!
 ```
-@use 'component-styles';
+@import 'component-styles';
 ```
 
 or 
 
 ```
-@use 'form-components';
-@use 'split-container';
+@import 'form-components';
+@import 'split-container';
 ```
 
 ### Using Style Guide Variables
 Variables can be imported as many times as needed, into any scss file in the application.
 Example:
 ```
-@use 'style-guide'
+@import 'style-guide/colors'
 
 div {
-  background-color: style-guide.$primary-color
+  background-color: $primary-color
 }
 ```
 
