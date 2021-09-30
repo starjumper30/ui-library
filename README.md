@@ -53,7 +53,15 @@ Add path entries to the root tsconfig.json so that your demo app can reference t
 "build:lib": "ng build ui-components && npm run copysass",
 ```
 
-Remember to properly scope your selectors! 
+#### Writing good styles
+- Reasons not to use encapsulated component styles:
+  - Very difficult to override
+  - Makes it impossible to style other components contained within the template without resorting to hacks such as ng-deep
+  - Encourages developers to create a copy-pasted nightmare
+  - Hard to refactor or restyle an app
+  - Better cleanliness can be achieved with properly scoped selectors in well-organized global styles
+- Use CSS custom properties to parameterize components (TODO expand this)
+
 
 ## Writing the Demo app
 The demo app serves multiple purposes:
@@ -64,6 +72,9 @@ The demo app serves multiple purposes:
 The source of your demo app is just as important as the running app. The developers that are going to use your library should be able to use the source code of your demo as an example of how best to configure an Angular app to use your library. 
 
 Each library module should be tested in a separate lazy-loaded route. This not only demonstrates best-practices to your users but also ensures that you catch any loading/injection issues with your library.
+
+Dog-food your own components and style guide! Every part of your demo app should be a demonstration of what an app in your organization should look like, including the navigation between demo views. 
+
 ### Importing library code
 Because of the symbolic links in our root public-api.ts file, it's ok to import from the library like this:
 ```
@@ -139,6 +150,11 @@ div {
 ### Publishing code without an NPM server
 TODO
 
-## Other TODOs
-- encapsulated component styles vs global styles
-- Using CSS custom properties to parameterize components
+## Upgrading to latest Angular with latest Dart-Sass
+Replace all Sass @import declarations with @use and @forward (This will be demonstrated on the master branch once the Angular 8 demo is completed and moved to a release branch.)
+
+https://sass-lang.com/documentation/at-rules/import
+
+https://sass-lang.com/documentation/at-rules/use
+
+https://sass-lang.com/documentation/at-rules/forward

@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/ui-components",
       "sourceRoot": "projects/ui-components/src",
-      "prefix": "lib",
+      "prefix": "uic",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

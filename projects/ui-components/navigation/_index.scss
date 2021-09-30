@@ -1,0 +1,32 @@
+@import '../style-guide/borders';
+@import '../style-guide/colors';
+@import '../style-guide/sizes';
+
+.uic-nav-bar {
+  background-color: $primary-color;
+  padding: $container-padding;
+  border-radius: $default-border-radius;
+  border: $default-border;
+
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    column-gap: $gap-between-elements;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: block;
+    border: $default-border;
+    border-radius: $default-border-radius;
+    background-color: $accent-color;
+    color: $accent-text-color;
+    padding: $container-padding;
+
+    &.active {
+      background-color: $highlight-color
+    }
+  }
+}

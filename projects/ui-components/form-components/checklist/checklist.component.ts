@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding} from '@angular/core';
 
 @Component({
-  selector: 'lib-checklist',
+  selector: 'uic-checklist',
   templateUrl: './checklist.component.html',
   styleUrls: ['./checklist.component.scss']
 })
-export class ChecklistComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class ChecklistComponent {
+  @HostBinding('class.uic-checklist')
+  hostClass = true;
 }

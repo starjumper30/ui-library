@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding} from '@angular/core';
 
 @Component({
-  selector: 'lib-data-grid',
+  selector: 'uic-data-grid',
   templateUrl: './data-grid.component.html',
   styleUrls: ['./data-grid.component.scss']
 })
-export class DataGridComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class DataGridComponent {
+  @HostBinding('class.uic-data-grid')
+  hostClass = true;
 
 }

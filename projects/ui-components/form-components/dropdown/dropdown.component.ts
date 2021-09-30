@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding} from '@angular/core';
 
 @Component({
-  selector: 'lib-dropdown',
+  selector: 'uic-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss']
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @HostBinding('class.uic-dropdown')
+  hostClass = true;
 
 }
