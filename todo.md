@@ -1,0 +1,5 @@
+- examples using CSS Custom Properties
+- a single script to handle publish and release of library
+- more examples, more routes
+- copy this to a branch and upgrade to angular 12 on master
+- theming?

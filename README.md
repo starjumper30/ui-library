@@ -146,9 +146,39 @@ div {
 - Run source-map-explorer and verify your library and its dependencies are being bundled into the demo app as expected. This is another reason why it is important to have lazy-loaded routes in your demo app.
 - Don't be afraid to poke around in the dist directory and manually inspect the demo-app bundles if source-map-explorer isn't giving you enough information.
 
-## Publishing your library
-### Publishing code without an NPM server
-TODO
+## Publishing your library to a git repo
+Publishing your library to a private npm registry is the best option. But if that option is not available to you, then you can publish to a git repo instead.
+
+### Setup
+- Create another git repo just for the built library package. This example library is being published here:  https://github.com/starjumper30/ui-components-package
+- Clone this repo so that it is adjacent to your development repo
+
+###Publish
+- Increment the version number in the library's package.json file
+- Run a script to: (see the "publish" script in this repo's package.json)
+  - Delete the contents of the package repo locally (except for the .git folder)
+  - Build the library
+  - Copy the contents (dist/ui-components) to the package repo folder
+- Commit and push the package repo
+- Create a tag matching the new version number and apply it to the last commit as a new release
+
+I imagine all of these steps could be scripted (TODO write this script). Ideally this would be done by a CICD server and not manually by a developer.
+
+If you screw up and need to delete a tag, use these commands:
+```
+git tag -d v0.0.1
+git push -d origin v0.0.1
+```
+
+###Installing into an application project:
+
+Users can add the github url, with an optional semver tag, to their package.json:
+```
+"ui-components": "git+ssh://git@github.com/starjumper30/ui-components-package.git#semver:0.0.1",
+```
+This also works with bitbucket and gitlab. See https://docs.npmjs.com/cli/v7/commands/npm-install for all possible install options.
+
+If you want to test the library install in your demo app, just npm install the library as shown above and then temporarily delete the paths entries from the root tsconfig.json before doing running or building the demo app.
 
 ## Upgrading to latest Angular with latest Dart-Sass
 Replace all Sass @import declarations with @use and @forward (This will be demonstrated on the master branch once the Angular 8 demo is completed and moved to a release branch.)
