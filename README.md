@@ -53,6 +53,8 @@ Add path entries to the root tsconfig.json so that your demo app can reference t
 "build:lib": "ng build ui-components && npm run copysass",
 ```
 
+Remember to properly scope your selectors! 
+
 ## Writing the Demo app
 The demo app serves multiple purposes:
 - Allows you to test that your components and modules work properly in an actual Angular app.

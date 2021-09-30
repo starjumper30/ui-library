@@ -1,1 +1,14 @@
-<p>split-container works!</p>
+<div class="split vertical">
+  <div class="split horizontal">
+    <div class="panel top left">
+      <ng-content select=".panel-content-1"></ng-content>
+    </div>
+    <div class="panel">
+      <ng-content select=".panel-content-2"></ng-content>
+    </div>
+  </div>
+  <div class="split horizontal">
+    <div class="panel bottom left"><ng-content select=".panel-content-3"></ng-content></div>
+    <div  class="panel"><ng-content select=".panel-content-4"></ng-content></div>
+  </div>
+</div>

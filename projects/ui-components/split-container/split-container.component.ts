@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding} from '@angular/core';
 
 @Component({
-  selector: 'lib-split-container',
+  selector: 'uic-split-container',
   templateUrl: './split-container.component.html',
   styleUrls: ['./split-container.component.scss']
 })
-export class SplitContainerComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class SplitContainerComponent {
+  @HostBinding('class.uic-split-container')
+  hostClass = true;
 }

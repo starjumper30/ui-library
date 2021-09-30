@@ -1,4 +1,44 @@
-.login-form {
-  display: flex;
-  flex-direction: column;
+@use '../style-guide';
+
+.uic-split-container {
+  .panel {
+    color: style-guide.$primary-text-color;
+    background-color: style-guide.$primary-color;
+    padding: style-guide.$container-padding;
+  }
+
+  .split {
+    display: flex;
+  }
+
+  .split > :nth-child(2) {
+    flex-grow: 1;
+  }
+
+  .split.vertical {
+    flex-direction: column;
+    row-gap: 10px;
+    height: 100%;
+  }
+
+  .split.horizontal {
+    flex-direction: row;
+    height: fit-content;
+    column-gap: 10px;
+
+    .panel.left {
+      overflow: scroll;
+    }
+
+    .panel.top.left {
+      resize: both;
+
+    }
+
+    .panel.bottom.left {
+      resize: horizontal;
+    }
+  }
 }
+
+
