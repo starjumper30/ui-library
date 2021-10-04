@@ -1,9 +1,9 @@
-@import './borders';
-@import './colors';
-@import './sizes';
+// This file should be @use imported once, in styles.scss of the app
+
+@use '../style-guide'; //import variables to use
 
 /**
-Global styles that are specific to a component, can be defined here.
+Global styles that are not specific to a component, can be defined here.
  */
 
 

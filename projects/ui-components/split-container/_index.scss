@@ -1,11 +1,10 @@
-@import '../style-guide/colors';
-@import '../style-guide/sizes';
+@use '../style-guide';
 
 .uic-split-container {
   .panel {
-    color: $primary-text-color;
-    background-color: $primary-color;
-    padding: $container-padding;
+    color: style-guide.$primary-text-color;
+    background-color: style-guide.$primary-color;
+    padding: style-guide.$container-padding;
   }
 
   .split {

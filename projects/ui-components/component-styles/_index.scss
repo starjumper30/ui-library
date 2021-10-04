@@ -1,5 +1,5 @@
-/** This file should only be used in an application once, in styles.scss **/
-@import './data-grid';
-@import './form-components';
-@import './navigation';
-@import './split-container';
+/** This file should only be @use imported in an application once, in styles.scss **/
+@use './data-grid';
+@use './form-components';
+@use './navigation';
+@use './split-container';

@@ -1,6 +1,6 @@
 # Getting Started
 
-I am in the process of updating this example to demonstrate best practices for distributing a style guide encoded with Sass as part of a shared ui component library.
+This is an example to demonstrate best practices for distributing a style guide encoded with Sass as part of a shared ui component library.
 
 ## Get the Code
 ```
@@ -11,7 +11,7 @@ npm i
 
 ## Build and Run
 ```
-ng build ui-components
+ng build:lib
 ng serve
 ```
 
@@ -31,14 +31,12 @@ Define multiple ng-packagr entrypoints!
 - Also, it's not just your library code that needs to get tree-shaken, it's your library's dependencies as well. For example, if you have a data-grid module that references a giant third-party grid library and some of your users are only interested in you form components, don't make them bundle the grid library!
 - The root public-api.ts file in your library should have only symbolic links such as _**export * from 'ui-components/data-grid';**_ This allows the user to use an import like 'ui-components' without actually importing the whole library and all its dependencies
 
-Add path entries to the root tsconfig.json so that your demo app can reference the built library code:
+Add path entries to the root tsconfig.json so that your demo app can reference the built library code (CLI may have already added this):
 ```    
 "paths": {
-  "ui-widgets": [
-    "dist/ui-widgets"
-  ],
-  "ui-widgets/*": [
-    "dist/ui-widgets/*"
+  "ui-components": [
+    "dist/ui-components/ui-components",
+    "dist/ui-components"
   ]
 }
 ```
@@ -46,11 +44,12 @@ Add path entries to the root tsconfig.json so that your demo app can reference t
 ### Packaging the library styles
 - Put an _index.scss file inside each top-level module folder containing global styles for the components contained within. Feel free to have this index file just import styles from finer-grained files within the module.
 - Encode your style guide into Sass variables inside a style-guide folder in your library.
+- Global styling that is not specific to one of the UI components can be put into style-guide/_global-styles.scss
 - Add a component-styles folder containing an _index.scss file that references all of the other scss files from your modules. This gives the user the option to import all component styles at once for convenience if they wish.
 - Add a post-build step to copy .scss files into your library dist.
 ```
-"copysass": "copyfiles -u 1 projects/ui-components/**/*.scss dist",
-"build:lib": "ng build ui-components && npm run copysass",
+"copysass": "copyfiles -u 1 projects/ui-components/**/**/_*.scss projects/ui-components/**/_*.scss dist",
+"build:lib": "ng build ui-components && npm run copysass"
 ```
 
 #### Writing good styles
@@ -94,9 +93,10 @@ Add this to the build options for the demo app in angular.json, to reference Sas
   "includePaths": ["dist/ui-components"]
 },
 ```
-In styles.scss import all component-styles
+In styles.scss import all component-styles and style-guide global styles (you may reference individual component style files if you are not using all the components in the library ).
 ```
-@import 'component-styles';
+@use 'style-guide/global-styles';
+@use 'component-styles';
 ```
 
 ## Writing a real app that installs the library into node_modules
@@ -120,24 +120,26 @@ The user of your library will need to add this to the build options for their ap
 
 In styles.scss they should import all component-styles or just the modules they need. These imports should only be done once!
 ```
-@import 'component-styles';
+@use 'style-guide/global-styles';
+@use 'component-styles';
 ```
 
 or 
 
 ```
-@import 'form-components';
-@import 'split-container';
+@use 'style-guide/global-styles';
+@use 'form-components';
+@use 'split-container';
 ```
 
 ### Using Style Guide Variables
 Variables can be imported as many times as needed, into any scss file in the application.
 Example:
 ```
-@import 'style-guide/colors'
+@use 'style-guide'
 
 div {
-  background-color: $primary-color
+  background-color: style-guide.$primary-color
 }
 ```
 
@@ -180,10 +182,7 @@ This also works with bitbucket and gitlab. See https://docs.npmjs.com/cli/v7/com
 
 If you want to test the library install in your demo app, just npm install the library as shown above and then temporarily delete the paths entries from the root tsconfig.json before doing running or building the demo app.
 
-## Upgrading to latest Angular with latest Dart-Sass
-Replace all Sass @import declarations with @use and @forward (This will be demonstrated on the master branch once the Angular 8 demo is completed and moved to a release branch.)
-
-https://sass-lang.com/documentation/at-rules/import
+## Sass links:
 
 https://sass-lang.com/documentation/at-rules/use
 

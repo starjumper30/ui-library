@@ -11,5 +11,5 @@ export class NavBarComponent {
   hostClass = true;
 
   @Input()
-  routes: NavRoute[];
+  routes: NavRoute[] | undefined;
 }
