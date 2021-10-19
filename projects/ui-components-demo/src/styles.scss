@@ -4,7 +4,7 @@
 @use 'component-styles';
 
 .uic-nav-bar {
-  margin-bottom: 20px;
+  margin-bottom: style-guide.$gap-between-containers;
 }
 
 .uic-split-container {
