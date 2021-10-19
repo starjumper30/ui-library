@@ -2,8 +2,7 @@ import {Component, HostBinding} from '@angular/core';
 
 @Component({
   selector: 'uic-dropdown',
-  templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  templateUrl: './dropdown.component.html'
 })
 export class DropdownComponent {
 

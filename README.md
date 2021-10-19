@@ -11,7 +11,7 @@ npm i
 
 ## Build and Run
 ```
-ng build:lib
+npm run build:lib
 ng serve
 ```
 
@@ -148,8 +148,19 @@ div {
 - Run source-map-explorer and verify your library and its dependencies are being bundled into the demo app as expected. This is another reason why it is important to have lazy-loaded routes in your demo app.
 - Don't be afraid to poke around in the dist directory and manually inspect the demo-app bundles if source-map-explorer isn't giving you enough information.
 
+## Publishing your library to a private npm registry
+- Increment the version number in the library's package.json file
+- Build the library
+- In the dist folder for the library (dist/ui-components) run npm publish
+```
+npm run build:lib
+cd dist/ui-components
+npm publish
+```
 ## Publishing your library to a git repo
-Publishing your library to a private npm registry is the best option. But if that option is not available to you, then you can publish to a git repo instead.
+**Publishing your library to a private npm registry is the best option. See Above** 
+
+But if that option is not available to you, then you can publish to a git repo instead.
 
 ### Setup
 - Create another git repo just for the built library package. This example library is being published here:  https://github.com/starjumper30/ui-components-package

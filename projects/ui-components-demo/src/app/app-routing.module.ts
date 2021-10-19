@@ -15,6 +15,14 @@ const routes: Routes = [
   {
     path: 'split-container',
     loadChildren: () => import('./split-container-demo/split-container-demo.module').then(m => m.SplitContainerDemoModule )
+  },
+  {
+    path: 'forms',
+    loadChildren: () => import('./forms-demo/forms-demo.module').then(m => m.FormsDemoModule )
+  },
+  {
+    path: 'data-grid',
+    loadChildren: () => import('./data-grid-demo/data-grid-demo.module').then(m => m.DataGridDemoModule )
   }
 ];
 

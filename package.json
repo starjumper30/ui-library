@@ -24,7 +24,6 @@
     "@angular/router": "~12.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "ui-components": "git+ssh://git@github.com/starjumper30/ui-components-package.git#semver:1.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

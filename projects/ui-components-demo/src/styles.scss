@@ -1,3 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'style-guide';
 @use 'style-guide/global-styles';
 @use 'component-styles';
+
+.uic-nav-bar {
+  margin-bottom: 20px;
+}
+
+.uic-split-container {
+  height: 600px;
+}

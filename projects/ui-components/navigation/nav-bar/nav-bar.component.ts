@@ -3,8 +3,7 @@ import {NavRoute} from './nav-route';
 
 @Component({
   selector: 'uic-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  templateUrl: './nav-bar.component.html'
 })
 export class NavBarComponent {
   @HostBinding('class.uic-nav-bar')

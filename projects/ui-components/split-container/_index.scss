@@ -1,6 +1,9 @@
 @use '../style-guide';
 
 .uic-split-container {
+  display: block;
+  position:relative;
+
   .panel {
     color: style-guide.$primary-text-color;
     background-color: style-guide.$primary-color;

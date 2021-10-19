@@ -1,6 +1,7 @@
 @use '../style-guide';
 
 .uic-nav-bar {
+  display: block;
   background-color: style-guide.$primary-color;
   padding: style-guide.$container-padding;
   border-radius: style-guide.$default-border-radius;

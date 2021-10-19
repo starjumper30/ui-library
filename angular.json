@@ -37,9 +37,6 @@
     "ui-components-demo": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        },
         "@schematics/angular:application": {
           "strict": true
         }
@@ -154,7 +151,8 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "inlineStyle": true
     }
   },
   "defaultProject": "ui-components-demo"
