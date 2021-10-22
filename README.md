@@ -168,10 +168,13 @@ But if that option is not available to you, then you can publish to a git repo i
 
 ###Publish
 - Increment the version number in the library's package.json file
-- Run a script to: (see the "publish" script in this repo's package.json)
+- Run a script to:
   - Delete the contents of the package repo locally (except for the .git folder)
   - Build the library
   - Copy the contents (dist/ui-components) to the package repo folder
+```
+    "publish": "rimraf ../ui-library-package/* && npm run build:lib && copyfiles -u 2 \"dist/ui-components/*\" \"dist/ui-components/**/*\" ../ui-library-package"
+```
 - Commit and push the package repo
 - Create a tag matching the new version number and apply it to the last commit as a new release
 

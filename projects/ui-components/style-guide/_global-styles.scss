@@ -7,3 +7,7 @@ Global styles that are not specific to a component, can be defined here.
  */
 
 
+button {
+  background-color: style-guide.$primary-color;
+}
+

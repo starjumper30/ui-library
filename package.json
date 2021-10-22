@@ -7,9 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "copysass": "copyfiles -u 1 projects/ui-components/**/**/_*.scss projects/ui-components/**/_*.scss dist",
+    "copysass": "copyfiles -u 1 \"projects/ui-components/**/**/_*.scss\" \"projects/ui-components/**/_*.scss\" dist",
     "build:lib": "ng build ui-components && npm run copysass",
-    "publish": "rimraf ../ui-library-package/* && npm run build:lib && copyfiles -u 2 \"dist/ui-components/*\" \"dist/ui-components/**/*\" ../ui-library-package",
     "sme": "ng build -c=sme && cd dist/ui-components-demo && source-map-explorer *.js"
   },
   "private": true,

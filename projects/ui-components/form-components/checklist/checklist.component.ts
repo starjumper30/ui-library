@@ -1,10 +1,9 @@
-import {Component, HostBinding} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'uic-checklist',
+  host: { class: 'uic-checklist' },
   templateUrl: './checklist.component.html'
 })
 export class ChecklistComponent {
-  @HostBinding('class.uic-checklist')
-  hostClass = true;
 }
